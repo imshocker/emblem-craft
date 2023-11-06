@@ -23,16 +23,18 @@ const getColorInput = async () => {
 };
 
 const getTextInput = async () => {
-    return inquirer.prompt({
-        type: 'input',
-        name: 'text',
-        message: 'Enter the text for the shape:',
-    },
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'text',
+            message: 'Enter the text for the shape:',
+        },
         {
             type: 'input',
             name: 'textColor',
-            message: 'Enter the color (in CSS format) for the text:',
-        });
+            message: 'Enter the text color (in CSS format) for the shape:',
+        },
+    ]);
 };
 
 const generateShape = async () => {
@@ -43,20 +45,22 @@ const generateShape = async () => {
 
         let shape;
 
+        // Adds color and text properties to Shape
         switch (shapeType.shape) {
             case 'Triangle':
-                shape = new Triangle(color.color, textProp.text, textProp.textColor); // Pass text to the Triangle constructor
+                shape = new Triangle(color.color, textProp.text, textProp.textColor);
                 break;
             case 'Circle':
-                shape = new Circle(color.color, textProp.text, textProp.textColor); // Pass text to the Circle constructor
+                shape = new Circle(color.color, textProp.text, textProp.textColor);
                 break;
             case 'Square':
-                shape = new Square(color.color, textProp.text, textProp.textColor); // Pass text to the Square constructor
+                shape = new Square(color.color, textProp.text, textProp.textColor);
                 break;
             default:
                 console.log('Invalid shape selection');
                 return;
         }
+        //Vars for creating and placing Logo SVG into examples/
         const svgContent = shape.render();
         const fileName = `examples/${shapeType.shape.toLowerCase()}_logo.svg`;
 
@@ -68,3 +72,10 @@ const generateShape = async () => {
 };
 
 generateShape();
+
+module.exports = {
+    getShapeInput,
+    getColorInput,
+    getTextInput,
+    generateShape,
+};

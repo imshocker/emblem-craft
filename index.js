@@ -2,6 +2,28 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const { Triangle, Circle, Square } = require('./lib/shapes');
 
+const startApp = async () => {
+    console.log(`
+
+    ██╗░░░░░░█████╗░░██████╗░░█████╗░
+    ██║░░░░░██╔══██╗██╔════╝░██╔══██╗
+    ██║░░░░░██║░░██║██║░░██╗░██║░░██║
+    ██║░░░░░██║░░██║██║░░╚██╗██║░░██║
+    ███████╗╚█████╔╝╚██████╔╝╚█████╔╝
+    ╚══════╝░╚════╝░░╚═════╝░░╚════╝░
+    
+    ███╗░░░███╗░█████╗░██╗░░██╗███████╗██████╗░
+    ████╗░████║██╔══██╗██║░██╔╝██╔════╝██╔══██╗
+    ██╔████╔██║███████║█████═╝░█████╗░░██████╔╝
+    ██║╚██╔╝██║██╔══██║██╔═██╗░██╔══╝░░██╔══██╗
+    ██║░╚═╝░██║██║░░██║██║░╚██╗███████╗██║░░██║
+    ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝
+    `)
+
+    generateShape();
+};
+
+
 const getShapeInput = async () => {
     const shapeQuestion = {
         type: 'list',
@@ -19,7 +41,6 @@ const getColorInput = async () => {
         name: 'color',
         message: 'Enter the color (in CSS format) for the shape:',
     });
-
 };
 
 const getTextInput = async () => {
@@ -71,7 +92,7 @@ const generateShape = async () => {
     }
 };
 
-generateShape();
+startApp();
 
 module.exports = {
     getShapeInput,
